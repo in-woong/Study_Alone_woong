@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
+import { createLogger } from 'redux-logger';
 import App from './App';
+import loggerMiddleware from './lib/loggerMiddleware';
 import rootReducer from './modules';
 
-const store = createStore(rootReducer);
+const logger = createLogger();
+const store = createStore(rootReducer, applyMiddleware(logger));
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
