@@ -6,10 +6,17 @@ import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
 import App from './App';
 import loggerMiddleware from './lib/loggerMiddleware';
-import rootReducer from './modules';
+import rootReducer, { rootSaga } from './modules';
+import createSagaMiddleware from 'redux-saga';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 const logger = createLogger();
-const store = createStore(rootReducer, applyMiddleware(logger, thunk));
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(logger, thunk, sagaMiddleware))
+);
+sagaMiddleware.run(rootSaga);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
