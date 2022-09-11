@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 import { Link } from 'react-router-dom';
 
+/**
+ * 회원가입 또는 로그인 폼을 보여줌 **/
 const AuthTemplateBlock = styled.div`
   position: absolute;
   left: 0;
@@ -35,7 +37,7 @@ const AuthTemplate = ({ children }) => {
     <AuthTemplateBlock>
       <WhiteBox>
         <div className="logo-area">
-          <Link to="/"></Link>
+          <Link to="/">REACTERS</Link>
         </div>
         {children}
       </WhiteBox>
