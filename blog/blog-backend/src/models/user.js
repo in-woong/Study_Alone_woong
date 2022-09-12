@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 const UserSchema = new Schema({
-  usernmae: String,
+  username: String,
   hashedPassword: String,
 });
 
@@ -14,7 +14,7 @@ UserSchema.methods.setPassword = async function (password) {
 
 UserSchema.methods.checkPassword = async function (password) {
   const result = await bcrypt.compare(password, this.hashedPassword);
-  return result;
+  return result; // true / false
 };
 
 UserSchema.statics.findByUsername = function (username) {
@@ -29,16 +29,18 @@ UserSchema.methods.serialize = function () {
 
 UserSchema.methods.generateToken = function () {
   const token = jwt.sign(
+    // 첫번째 파라미터엔 토큰 안에 집어넣고 싶은 데이터를 넣습니다
     {
       _id: this.id,
       username: this.username,
     },
-    process.env.JWT_SECRET,
-    { expiresIn: '7d' },
+    process.env.JWT_SECRET, // 두번째 파라미터에는 JWT 암호를 넣습니다
+    {
+      expiresIn: '7d', // 7일동안 유효함
+    },
   );
   return token;
 };
 
 const User = mongoose.model('User', UserSchema);
-
 export default User;

@@ -9,7 +9,8 @@
     "koa": "^2.13.4",
     "koa-bodyparser": "^4.3.0",
     "koa-router": "^12.0.0",
-    "mongoose": "^6.6.0"
+    "mongoose": "^6.6.0",
+    "sanitize-html": "^2.7.1"
   },
   "name": "blog-backend",
   "version": "1.0.0",
