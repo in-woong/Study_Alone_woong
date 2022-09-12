@@ -7,9 +7,10 @@ const HeaderContainer = () => {
   const { user } = useSelector(({ user }) => ({ user: user.user }));
   const dispatch = useDispatch();
   const onLogOut = () => {
+    console.log('logout');
     dispatch(logout());
   };
-  return <Header user={user} onLogout={onLogOut} />;
+  return <Header user={user} onLogOut={onLogOut} />;
 };
 
 export default HeaderContainer;
