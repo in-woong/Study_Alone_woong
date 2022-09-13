@@ -48,6 +48,7 @@ const Editor = ({ title, body, onChangeField }) => {
         ],
       },
     });
+
     const quill = quillInstance.current;
     quill.on('text-change', (delta, oldDelta, source) => {
       if (source === 'user') {
@@ -55,6 +56,14 @@ const Editor = ({ title, body, onChangeField }) => {
       }
     });
   }, [onChangeField]);
+
+  const mounted = useRef(false);
+
+  useEffect(() => {
+    if (mounted.current) return;
+    mounted.current = true;
+    quillInstance.current.root.innerHTML = body;
+  }, [body]);
 
   const onChangeTitle = (e) => {
     onChangeField({ key: 'title', value: e.target.value });

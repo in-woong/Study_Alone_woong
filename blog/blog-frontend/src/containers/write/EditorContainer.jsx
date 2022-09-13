@@ -6,7 +6,7 @@ import { changeField, initialize } from '../../modules/write';
 const EditorContainer = () => {
   const dispatch = useDispatch();
   const { title, body } = useSelector(({ write }) => ({
-    title: write.tile,
+    title: write.title,
     body: write.body,
   }));
   const onChangeField = useCallback(
