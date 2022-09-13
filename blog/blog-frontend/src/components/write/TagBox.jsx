@@ -62,7 +62,6 @@ const TagItem = React.memo(({ tag, onRemove }) => (
 ));
 
 const TagList = React.memo(({ tags, onRemove }) => {
-  console.log('tags', tags);
   return (
     <TagListBlock>
       {tags.map((tag) => (

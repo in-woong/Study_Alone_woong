@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { Routes, Route } from 'react-router-dom';
 import LoginPage from './page/LoginPage';
 import PostListPage from './page/PostListPage';
@@ -8,6 +9,9 @@ import WritePage from './page/WritePage';
 function App() {
   return (
     <div className="App">
+      <Helmet>
+        <title>REACTERS</title>
+      </Helmet>
       <Routes>
         <Route path="/" element={<PostListPage />} />
         <Route path="/login" element={<LoginPage />} />
